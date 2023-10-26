@@ -3,7 +3,6 @@ import './Todo.css';
 import TodoItems from './TodoItems';
 
 const Todo = () => {
-    // Initialize todos with the stored values or an empty array
     const [todos, setTodos] = useState(() => {
         const storedTodos = JSON.parse(localStorage.getItem("todos"));
         return storedTodos || [];
@@ -25,7 +24,6 @@ const Todo = () => {
     }
 
     useEffect(() => {
-        // Store todos in local storage whenever todos change
         localStorage.setItem("todos", JSON.stringify(todos));
     }, [todos]);
 
