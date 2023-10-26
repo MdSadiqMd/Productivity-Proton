@@ -5,24 +5,34 @@ import cross from './Assets/bin.png';
 
 const TodoItems = ({ no, display, text, setTodos }) => {
   const toggle = () => {
-    let data = JSON.parse(localStorage.getItem("todos"));
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].no === no) {
-        if (data[i].display === "") {
-          data[i].display = "line-through";
-        } else {
-          data[i].display = "";
+    try {
+      let data = JSON.parse(localStorage.getItem("todos")) || [];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].no === no) {
+          if (data[i].display === "") {
+            data[i].display = "line-through";
+          } else {
+            data[i].display = "";
+          }
+          break;
         }
-        break;
       }
+      setTodos(data);
+      localStorage.setItem("todos", JSON.stringify(data));
+    } catch (error) {
+      console.error("Error accessing or updating localStorage:", error);
     }
-    setTodos(data);
   };
 
   const deleteTodo = (no) => {
-    let data = JSON.parse(localStorage.getItem("todos"));
-    data = data.filter((todo) => todo.no !== no); 
-    setTodos(data);
+    try {
+      let data = JSON.parse(localStorage.getItem("todos")) || [];
+      data = data.filter((todo) => todo.no !== no); 
+      setTodos(data);
+      localStorage.setItem("todos", JSON.stringify(data));
+    } catch (error) {
+      console.error("Error accessing or updating localStorage:", error);
+    }
   }
 
   return (
@@ -32,7 +42,7 @@ const TodoItems = ({ no, display, text, setTodos }) => {
 
         <div className="todoItems-text">{text}</div>
       </div>
-      <img onClick={() => deleteTodo(no)} src={cross} alt="" /> {/* Invoke deleteTodo with 'no' parameter */}
+      <img onClick={() => deleteTodo(no)} src={cross} alt="" /> 
     </div>
   );
 }

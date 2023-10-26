@@ -3,7 +3,12 @@ import './Todo.css';
 import TodoItems from './TodoItems';
 
 const Todo = () => {
-    const [todos, setTodos] = useState([]);
+    // Initialize todos with the stored values or an empty array
+    const [todos, setTodos] = useState(() => {
+        const storedTodos = JSON.parse(localStorage.getItem("todos"));
+        return storedTodos || [];
+    });
+
     const inputRef = useRef(null);
 
     // Retrieve the count from local storage
@@ -18,14 +23,6 @@ const Todo = () => {
         // Update the count in local storage
         localStorage.setItem("todos-count", count + 1);
     }
-
-    useEffect(() => {
-        // Retrieve todos from local storage when the component mounts
-        const storedTodos = JSON.parse(localStorage.getItem("todos"));
-        if (storedTodos) {
-            setTodos(storedTodos);
-        }
-    }, []);
 
     useEffect(() => {
         // Store todos in local storage whenever todos change
