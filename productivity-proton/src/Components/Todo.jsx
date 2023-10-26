@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Todo.css'
+import TodoItems from './TodoItems';
 
 const Todo = () => {
     const [todos,setTodos]=useState(null);
@@ -19,7 +20,9 @@ const Todo = () => {
             <button>Add</button>
         </div>
         <div onClick={()=>{add}} className="todo-list">
-            
+            {todos.map((item,index)=>{
+                return <TodoItems key={index} no={item.no} display={item.display} text={item.text} />
+            })}
         </div>
     </div>
   )
