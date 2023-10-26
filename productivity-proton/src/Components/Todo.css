@@ -55,5 +55,43 @@
   button:hover {
     background-color: var(--secondary-color);
   }
+  /* TodoItems.css */
+
+.todoitems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #fff;
+  }
+  
+  .todoitems-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .todoitems img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .todoItems-text {
+    flex: 1;
+  }
+  
+  .todoitems img[src$='accept.png'] {
+    display: none;
+  }
+  
+  .todoitems:hover img[src$='accept.png'] {
+    display: block;
+  }
+  
+  .todoitems img[src$='bin.png'] {
+    cursor: pointer;
+  }
   
   
