@@ -19,6 +19,12 @@ const TodoItems = ({ no, display, text, setTodos }) => {
     setTodos(data);
   };
 
+  const deleteTodo = (no) => {
+    let data = JSON.parse(localStorage.getItem("todos"));
+    data = data.filter((todo) => todo.no !== no); 
+    setTodos(data);
+  }
+
   return (
     <div className="todoitems">
       <div className="todoitems-container" onClick={toggle}>
@@ -26,7 +32,7 @@ const TodoItems = ({ no, display, text, setTodos }) => {
 
         <div className="todoItems-text">{text}</div>
       </div>
-      <img src={cross} alt="" />
+      <img onClick={() => deleteTodo(no)} src={cross} alt="" /> {/* Invoke deleteTodo with 'no' parameter */}
     </div>
   );
 }
