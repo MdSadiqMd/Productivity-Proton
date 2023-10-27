@@ -2,6 +2,7 @@ import React from 'react';
 import tick from './Assets/accept.png';
 import not_tick from './Assets/not_tick.png';
 import cross from './Assets/bin.png';
+import './TodoItems.css'
 
 const TodoItems = ({ no, display, text, setTodos }) => {
   const toggle = () => {
