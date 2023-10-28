@@ -6,7 +6,7 @@ import './TodoItems.css'
 
 const TodoItems = ({ no, display, text, setTodos }) => {
   const toggle = () => {
-    try {kmvdse
+    try {
       let data = JSON.parse(localStorage.getItem("todos")) || [];
       for (let i = 0; i < data.length; i++) {
         if (data[i].no === no) {
